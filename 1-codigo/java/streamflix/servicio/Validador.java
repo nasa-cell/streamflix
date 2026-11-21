@@ -14,7 +14,7 @@ public final class Validador {
     private static final Pattern CORREO = Pattern.compile("^[A-Za-z0-9.]{6,30}@gmail\\.com$", Pattern.CASE_INSENSITIVE);
     private static final Pattern DNI = Pattern.compile("^[0-9]{8}$");
     private static final Pattern CELULAR = Pattern.compile("^9[0-9]{8}$");
-    private static final Pattern CLAVE = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$");
+    private static final Pattern CLAVE = Pattern.compile("^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9\\s])\\S{8,20}$");
     private static final Pattern PERFIL = Pattern.compile("^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]{2,15}$");
 
     private Validador() {}
@@ -68,7 +68,7 @@ public final class Validador {
     public static String clave(String v) {
         v = v == null ? "" : v;
         if (!CLAVE.matcher(v).matches())
-            throw new ErrorUsuario("La contraseña lleva de 8 a 20 caracteres, con letras y números juntos (sin símbolos).", "clave");
+            throw new ErrorUsuario("La contraseña lleva de 8 a 20 caracteres, sin espacios, con al menos una letra, un número y un símbolo (por ejemplo ! @ # . _ -).", "clave");
         return v;
     }
 

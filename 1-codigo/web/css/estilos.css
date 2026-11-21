@@ -188,6 +188,9 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
 .campo.mal .entrada { border-color: var(--error); animation: sacudir .35s; }
 .campo.mal .ayuda span:first-child { color: #ffa8a8; }
 .campo.bien .ayuda span:first-child { color: #8ce99a; }
+.reglas-clave { list-style: none; padding: 0; margin: 8px 0 0; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; font-size: 13px; color: var(--suave); }
+.reglas-clave li.ok { color: #8ce99a; font-weight: 700; }
+.reglas-clave b { display: inline-block; width: 1.1em; }
 .aviso-tecla { color: var(--c3) !important; font-weight: 600; }
 .clave-caja { position: relative; }
 .clave-caja .entrada { padding-right: 52px; }

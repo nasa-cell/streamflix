@@ -28,7 +28,7 @@ new MutationObserver(cambios => {
 }).observe(document.documentElement, { childList: true, subtree: true });
 
 function rutaPortada(archivo, grande) {
-  return "portadas/" + (grande ? "" : "chicas/") + encodeURIComponent(archivo);
+  return medio("portadas/" + (grande ? "" : "chicas/") + encodeURIComponent(archivo));
 }
 
 function imagenDiferida(archivo, alt = "", grande = false) {

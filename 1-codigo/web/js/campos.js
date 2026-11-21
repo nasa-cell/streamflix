@@ -5,6 +5,7 @@ const Campos = (() => {
     letras: { quitar: /[^A-Za-zÁÉÍÓÚáéíóúÑñÜü ]/g, aviso: "Aquí solo van letras y espacios." },
     numeros: { quitar: /[^0-9]/g, aviso: "Aquí solo van números." },
     alfanum: { quitar: /[^A-Za-z0-9]/g, aviso: "Solo letras y números, sin espacios ni símbolos." },
+    clave: { quitar: /\s/g, aviso: "La contraseña no lleva espacios." },
     perfil: { quitar: /[^A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]/g, aviso: "Solo letras y números, sin espacios." },
     correo: { quitar: /[^A-Za-z0-9.@]/g, aviso: "En el Gmail solo van letras, números, punto y @." },
   };
@@ -37,6 +38,18 @@ const Campos = (() => {
     temporizadores.set(input, setTimeout(() => revisar(input, false), 1800));
   }
 
+  // Lista de condiciones de la contraseña que se ponen en verde mientras se escribe.
+  const CONDICIONES = [v => v.length >= 8 && v.length <= 20, v => /[A-Za-z]/.test(v), v => /[0-9]/.test(v), v => /[^A-Za-z0-9\s]/.test(v)];
+  function listaClave(input) {
+    const lista = input.closest(".campo").querySelector(".reglas-clave");
+    if (!lista) return;
+    lista.querySelectorAll("li").forEach((li, i) => {
+      const ok = CONDICIONES[i](input.value);
+      li.classList.toggle("ok", ok);
+      li.querySelector("b").textContent = ok ? "✔" : "○";
+    });
+  }
+
   function contador(input) {
     const c = input.closest(".campo").querySelector(".contador");
     if (c && input.maxLength > 0) c.textContent = `${input.value.length}/${input.maxLength}`;
@@ -45,6 +58,7 @@ const Campos = (() => {
   function revisar(input, mostrarVacio = true) {
     const v = input.value.trim();
     contador(input);
+    listaClave(input);
     if (!v) {
       marcar(input, mostrarVacio && input.required ? false : null, mostrarVacio && input.required ? "Este dato es obligatorio." : null);
       return !input.required;
@@ -100,6 +114,7 @@ const Campos = (() => {
             input.value = limpio;
             try { input.setSelectionRange(pos, pos); } catch (e) { /* algunos tipos no lo permiten */ }
             contador(input);
+            listaClave(input);
             avisoTecla(input, tipo.aviso);
             return;
           }

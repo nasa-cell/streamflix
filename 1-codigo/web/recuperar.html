@@ -51,18 +51,22 @@
       <form id="paso3" class="paso-form" novalidate hidden>
         <div class="campos">
           <div class="campo ancho">
-            <label for="clave">Nueva contraseña <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS Y NÚMEROS</span></label>
+            <label for="clave">Nueva contraseña <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS, NÚMEROS Y SÍMBOLO</span></label>
             <div class="clave-caja">
-              <input class="entrada" id="clave" name="clave" type="password" required maxlength="20" data-min="8" data-solo="alfanum"
-                     data-regla="^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$" data-mensaje="8 a 20, con letras y números juntos." placeholder="Ejemplo: Peli2026x" autocomplete="new-password">
+              <input class="entrada" id="clave" name="clave" type="password" required maxlength="20" data-min="8" data-solo="clave"
+                     data-regla="^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[^A-Za-z0-9\s])\S{8,20}$" data-mensaje="8 a 20, con letra, número y símbolo." placeholder="Ejemplo: Peli2026x" autocomplete="new-password">
               <button type="button" class="ver-clave" aria-label="Ver contraseña">👁</button>
             </div>
-            <div class="ayuda"><span>8 a 20, letras y números.</span><span class="contador"></span></div>
+            <div class="ayuda"><span>8 a 20, con letra, número y símbolo.</span><span class="contador"></span></div>
+            <ul class="reglas-clave" aria-live="polite">
+              <li><b>○</b> 8 a 20 caracteres</li><li><b>○</b> Una letra</li>
+              <li><b>○</b> Un número</li><li><b>○</b> Un símbolo (! @ # . _ -)</li>
+            </ul>
           </div>
           <div class="campo ancho">
             <label for="clave2">Repite la contraseña <span class="marca obligatorio">OBLIGATORIO</span></label>
             <div class="clave-caja">
-              <input class="entrada" id="clave2" name="clave2" type="password" required maxlength="20" data-solo="alfanum" autocomplete="new-password">
+              <input class="entrada" id="clave2" name="clave2" type="password" required maxlength="20" data-solo="clave" autocomplete="new-password">
               <button type="button" class="ver-clave" aria-label="Ver contraseña">👁</button>
             </div>
             <div class="ayuda"><span>Escríbela igual que arriba.</span><span class="contador"></span></div>

@@ -1,4 +1,16 @@
 // Conversa con el servidor Java y explica cualquier error con palabras claras.
+
+// En internet (Render) las portadas y el video se piden directo a Cloudinary: llegan más livianas
+// (formato automático) y sin pasar por el servidor. En la PC salen de la carpeta web, sin internet.
+const EN_NUBE = location.hostname.endsWith("onrender.com");
+function medio(ruta) {
+  if (!EN_NUBE) return ruta;
+  const base = "https://res.cloudinary.com/d0em5ykz/";
+  const video = ruta.match(/^video\/(.+)\.(mp4|webm)$/);
+  if (video) return base + "video/upload/streamflix/video/" + video[1] + "-" + video[2] + "." + video[2];
+  return base + "image/upload/f_auto,q_auto/streamflix/" + ruta;
+}
+
 class ErrorApi extends Error {
   constructor(mensaje, campo, codigo, detalle, datos = {}) {
     super(mensaje);

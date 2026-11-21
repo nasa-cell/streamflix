@@ -14,7 +14,7 @@
     let html = "";
     for (let i = 0; i < CANTIDAD; i++) {
       const n = (i * 37) % 146 + 1;
-      html += `<img src="portadas/chicas/${n}.jpg" alt="" decoding="async">`;
+      html += `<img src="${medio(`portadas/chicas/${n}.jpg`)}" alt="" decoding="async">`;
     }
     fondo.innerHTML = html;
     const velo = document.createElement("div");

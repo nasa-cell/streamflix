@@ -21,7 +21,7 @@
   botonSonido.addEventListener("click", e => { e.stopPropagation(); Sonido.cambiar(); pintar(); });
 
   const forma = innerHeight > innerWidth ? "v" : "h";
-  video.innerHTML = `<source src="video/entrada-${forma}.webm" type="video/webm"><source src="video/entrada-${forma}.mp4" type="video/mp4">`;
+  video.innerHTML = `<source src="${medio(`video/entrada-${forma}.webm`)}" type="video/webm"><source src="${medio(`video/entrada-${forma}.mp4`)}" type="video/mp4">`;
   video.load();
   // Copia ampliada y difuminada detrás, para rellenar los lados cuando el video no llena la pantalla.
   const fondoVideo = document.getElementById("video-fondo");
