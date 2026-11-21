@@ -68,6 +68,11 @@ public class RecomendacionServicio {
         return guardado;
     }
 
+    /** Entrena el modelo por adelantado (al arrancar), para que la primera persona no espere. */
+    public void precalentar() throws SQLException {
+        contexto();
+    }
+
     private Contexto entrenar() throws SQLException {
         Map<Integer, Pelicula> peliculas = CacheDatos.peliculas();
         Map<Long, String> comentarios = comentarioDAO.textosPorPar();

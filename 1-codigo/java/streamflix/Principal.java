@@ -91,6 +91,20 @@ public class Principal {
         }
         System.out.println("StreamFlix listo en " + direccion);
 
+        // La IA se entrena apenas arranca: mientras la persona ve la entrada y escribe su
+        // contraseña, el modelo ya queda listo y las recomendaciones salen sin esperar.
+        Thread previo = new Thread(() -> {
+            try {
+                long t = System.currentTimeMillis();
+                new streamflix.servicio.RecomendacionServicio().precalentar();
+                System.out.println("IA lista en " + (System.currentTimeMillis() - t) + " ms.");
+            } catch (Exception e) {
+                System.out.println("La IA se entrenará con la primera visita: " + e.getMessage());
+            }
+        }, "precalentar-ia");
+        previo.setDaemon(true);
+        previo.start();
+
         if (app) {
             abrirNavegador(direccion);
             var reloj = Executors.newSingleThreadScheduledExecutor();
