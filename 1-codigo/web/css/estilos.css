@@ -32,6 +32,8 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
 }
+/* En celulares la página nunca se corre de costado aunque algo se pase del ancho. */
+html { overflow-x: clip; }
 a { color: var(--c3); }
 img { display: block; max-width: 100%; }
 .oculto { display: none !important; }
@@ -241,7 +243,7 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
 .detalle .tarjeta:hover { transform: none; box-shadow: var(--sombra); }
 .detalle h1 { font-size: clamp(26px, 3.4vw, 40px); line-height: 1.15; }
 .datos { color: var(--suave); margin: 8px 0 12px; display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: 14px; }
-.donde { display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr)); gap: 12px; margin: 14px 0; }
+.donde { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(170px, 100%), 1fr)); gap: 12px; margin: 14px 0; }
 .plataforma {
   height: 50px; border-radius: 12px; display: flex; align-items: center; justify-content: center; gap: 8px; color: #fff;
   font-weight: 600; text-decoration: none; transition: transform .2s, box-shadow .2s; border: 2px solid #ffffff22;
@@ -311,11 +313,15 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
 .aviso.info { border-left-color: var(--c5); }
 .aviso .icono { font-size: 20px; }
 .aviso small { display: block; color: var(--suave); margin-top: 2px; }
+.aviso small:empty { display: none; }
+.aviso > div { min-width: 0; }
 .aviso.sale { animation: saleAviso .3s ease forwards; }
 @keyframes entraAviso { from { opacity: 0; transform: translateX(40px); } to { opacity: 1; transform: none; } }
 @keyframes saleAviso { to { opacity: 0; transform: translateX(40px); } }
+@keyframes entraAvisoArriba { from { opacity: 0; transform: translateY(-24px); } to { opacity: 1; transform: none; } }
+@keyframes saleAvisoArriba { to { opacity: 0; transform: translateY(-24px); } }
 .fondo-modal { position: fixed; inset: 0; z-index: 90; background: #05051acc; backdrop-filter: blur(4px); display: grid; place-items: center; padding: 16px; animation: aparece .2s both; }
-.modal { width: min(460px, 100%); background: var(--panel); border-radius: 18px; padding: 26px; border-top: 6px solid var(--c2); box-shadow: var(--sombra); text-align: center; animation: aparece .3s both; }
+.modal { max-height: calc(100dvh - 32px); overflow-y: auto; width: min(460px, 100%); background: var(--panel); border-radius: 18px; padding: 26px; border-top: 6px solid var(--c2); box-shadow: var(--sombra); text-align: center; animation: aparece .3s both; }
 .modal.peligro { border-top-color: var(--error); }
 .modal .icono-grande { font-size: 46px; }
 .modal h2 { margin: 6px 0; }
@@ -339,7 +345,15 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
   .enlaces.abierto { display: flex; }
   .menu .contenedor { justify-content: space-between; }
   .perfil-boton span:not(.avatar-mini) { display: none; }
-  .campos, .rejilla-2, .rejilla-3, .detalle { grid-template-columns: 1fr; }
+  .campos, .rejilla-2, .rejilla-3, .detalle { grid-template-columns: minmax(0, 1fr); }
+  .detalle > * { min-width: 0; }
+  /* En el celular los avisos salen arriba (no tapan los botones de abajo) y bajan desde arriba,
+     sin moverse de costado para que la página no se corra. */
+  .avisos { top: calc(74px + env(safe-area-inset-top)); bottom: auto; right: 10px; width: calc(100% - 20px); }
+  .aviso { animation-name: entraAvisoArriba; font-size: 13.5px; padding: 10px 12px; }
+  .aviso.sale { animation-name: saleAvisoArriba; }
+  .aviso b, .aviso small { overflow-wrap: anywhere; }
+  .perfil p { white-space: nowrap; }
   .barra-gusto > span:first-child { width: 40% !important; font-size: 12px; }
   .barra-gusto > span:last-child { width: auto !important; min-width: 44px; }
   .detalle .tarjeta { width: 220px; margin: 0 auto; }
@@ -371,6 +385,15 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
 }
 .quien { box-sizing: border-box; padding-block: 24px; }
 .rejilla-2 > .panel { display: flex; flex-direction: column; }
+
+/* Celulares bajos (con la barra del navegador): los perfiles y los botones entran sin taparse */
+@media (max-width: 720px) and (max-height: 760px) {
+  .quien h1 { margin-bottom: 16px; }
+  .perfiles { gap: 14px 18px; }
+  .perfil, .perfil .avatar { width: 84px; } .perfil .avatar { height: 84px; font-size: 38px; }
+  .perfil.nuevo .avatar { font-size: 40px; }
+  .perfil p { margin-top: 6px; font-size: 14px; }
+}
 .rejilla-2 > .panel > .arbol-texto { flex: 1; }
 
 /* Tráiler: botón junto a «Dónde ver», play sobre la portada y ventana con el video */
@@ -449,6 +472,7 @@ textarea.entrada { height: auto; min-height: 90px; padding: 12px 14px; resize: v
 @media (max-width: 720px) { .filtros { position: static; } }
 
 /* Portadas que se cargan al aparecer en pantalla */
+img.diferida:not(.lista) { color: transparent; }
 img.diferida { background: linear-gradient(100deg, #1f1d4a 30%, #2e2b6b 50%, #1f1d4a 70%) 0 0 / 300% 100%; animation: brillo-portada 1.3s linear infinite; opacity: .85; }
 img.diferida.lista { animation: none; background: none; opacity: 1; transition: opacity .25s; }
 @keyframes brillo-portada { to { background-position: -150% 0; } }
@@ -565,6 +589,11 @@ body.con-fondo .formulario { width: 100%; margin: 24px auto; box-shadow: 0 24px 
 }
 /* Buscador: el último filtro ocupa toda la fila y los textos de los filtros no se cortan */
 .titulo-seccion small { white-space: nowrap; }
+/* En el celular la explicación del título baja a su propia línea en vez de salirse por la derecha */
+@media (max-width: 720px) {
+  .titulo-seccion { max-width: 100%; }
+  .titulo-seccion small { display: block; margin: 2px 0 0; white-space: normal; }
+}
 @media (max-width: 900px) { .buscador select:last-child { grid-column: 1 / -1; } }
 @media (max-width: 600px) {
   select.entrada { font-size: 14px; padding-left: 12px; padding-right: 30px; text-overflow: ellipsis; }
@@ -597,3 +626,26 @@ body.con-fondo .formulario { width: 100%; margin: 24px auto; box-shadow: 0 24px 
   .perfil p { font-size: 20px; }
   .quien h1 { font-size: 52px; margin-bottom: 40px; }
 }
+
+/* Celulares angostos (320 a 380 px): el menú de arriba y los pasos de recuperar entran completos */
+@media (max-width: 380px) {
+  .menu .contenedor { gap: 6px; }
+  .logo-mini { font-size: 21px; letter-spacing: 0; }
+  .menu-derecha { gap: 6px; }
+  .hamburguesa, .menu-derecha > button:not(.perfil-boton) { width: 36px; height: 36px; }
+  .avatar-mini { width: 34px; height: 34px; font-size: 19px; }
+  .perfil-boton { gap: 2px; }
+  .paso-ficha { min-width: 0; padding: 8px 4px; flex-direction: column; align-items: center; justify-content: center; gap: 2px; }
+  .paso-ficha .n { display: grid; margin: 0 auto 3px; }
+  .paso-ficha b { font-size: 11px; line-height: 1.2; }
+}
+
+/* Tablets y PC chicas (721 a 1000 px): el menú pasa a la hamburguesa para no partirse en varias líneas */
+@media (min-width: 721px) and (max-width: 1000px) {
+  .hamburguesa { display: grid; }
+  .enlaces { display: none; position: absolute; top: 66px; left: 0; right: 0; flex-direction: column; background: var(--panel); padding: 10px 16px; border-bottom: 1px solid var(--borde); }
+  .enlaces.abierto { display: flex; }
+  .menu .contenedor { justify-content: space-between; }
+}
+/* La portada de la película no se estira: el botón de tráiler queda siempre sobre la imagen */
+.detalle > div:first-child { align-self: start; }

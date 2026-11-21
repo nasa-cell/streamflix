@@ -19,6 +19,16 @@ La versión en internet está en un plan gratis: la primera vez del día puede t
 
 Cuenta de ejemplo: **demo2025** / **Demo2025x**
 
+## Cuentas y contraseña
+
+- Al crear una cuenta, la contraseña lleva de 8 a 20 caracteres, sin espacios, con al menos una letra, un número y un símbolo (por ejemplo `Peli2025!`). Debajo del campo, una lista se pone en verde a medida que se cumple cada regla.
+- Si olvidas la contraseña, llega un código de 6 números a tu Gmail (vale 10 minutos).
+- Las cuentas creadas antes de esta regla siguen entrando con su contraseña de siempre.
+
+## Celular, tablet y PC
+
+La página se adapta a celulares desde 320 px, tablets y pantallas de PC hasta 2560 px, sin cortarse a los costados. En internet, las portadas y el video se cargan desde Cloudinary en un formato más liviano; la versión instalada los trae dentro y funciona sin internet.
+
 ## Qué hace la IA
 
 - **Filtrado colaborativo:** busca perfiles con gustos parecidos.

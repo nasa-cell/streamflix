@@ -27,12 +27,18 @@ new MutationObserver(cambios => {
   for (const c of cambios) for (const n of c.addedNodes) if (n.nodeType === 1) vigilarPortadas(n.matches?.("img[data-src]") ? n.parentNode : n);
 }).observe(document.documentElement, { childList: true, subtree: true });
 
+const VACIA = "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7";
+
 function rutaPortada(archivo, grande) {
   return medio("portadas/" + (grande ? "" : "chicas/") + encodeURIComponent(archivo));
 }
 
 function imagenDiferida(archivo, alt = "", grande = false) {
-  return `<img data-src="${rutaPortada(archivo, grande)}" alt="${escapar(alt)}" class="diferida" onload="this.classList.add('lista')">`;
+  // Mientras llega la portada se muestra una imagen vacía con brillo (nunca el ícono de imagen rota);
+  // si la portada falla, se vuelve a pedir una vez.
+  return `<img src="${VACIA}" data-src="${rutaPortada(archivo, grande)}" alt="${escapar(alt)}" class="diferida"
+    onload="if(!this.dataset.src)this.classList.add('lista')"
+    onerror="if(!this.dataset.src&&!this.dataset.otra){this.dataset.otra=1;this.src=this.src.split('?')[0]+'?otra=1'}">`;
 }
 
 function portadaImagen(p, grande = false) {
