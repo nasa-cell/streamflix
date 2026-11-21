@@ -1,4 +1,4 @@
-**⬇️ Descargar el instalador para Windows: [StreamFlix-instalador.exe](https://github.com/nasa-cell/streamflix/releases/latest/download/StreamFlix-instalador.exe)** · **🌐 Usar en internet: [streamflix-6q1n.onrender.com](https://streamflix-6q1n.onrender.com)**
+**⬇️ Descargar el instalador para Windows: [StreamFlix-instalador.exe](https://github.com/nasa-cell/streamflix/releases/latest/download/StreamFlix-instalador.exe)** · **🌐 Usar en internet: [streamflix-soxk.onrender.com](https://streamflix-soxk.onrender.com)**
 
 # StreamFlix
 
@@ -10,7 +10,7 @@ El instalador pregunta primero dónde guardar los datos:
 
 | | ☁️ Nube | 💻 Esta PC |
 |---|---|---|
-| Qué instala | Nada, solo un ícono que abre la página | StreamFlix con su propio Java (unos 90 MB) |
+| Qué instala | Nada, solo un ícono que abre la página | StreamFlix con su propio Java (unos 60 MB) |
 | Internet | Sí | No hace falta |
 | Necesita | — | MySQL 8.4 (gratis) |
 | Datos | En internet, se entra desde cualquier equipo | Solo en este equipo |
