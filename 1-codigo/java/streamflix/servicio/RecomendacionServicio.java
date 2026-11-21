@@ -41,6 +41,8 @@ public class RecomendacionServicio {
 
     private static final int REPETICIONES = 5;
     private static volatile Map<String, Object> metricasGuardadas;
+    private static volatile String firmaGuardada;
+    private final streamflix.dao.MetricasDAO metricasDAO = new streamflix.dao.MetricasDAO();
 
     private record Contexto(Map<Integer, Pelicula> peliculas, DatosEntrenamiento datos, List<Senal> senales,
                             Map<Long, String> comentarios, RecomendadorHibrido hibrido, Map<Integer, String> nombres) {}
@@ -157,9 +159,20 @@ public class RecomendacionServicio {
                         "promedio", Math.round(promedio * 10) / 10.0, "horas", Math.round(minutos / 60.0)));
     }
 
-    /** Validación cruzada de 5 partes. Se calcula una vez y se guarda; "recalcular" la vuelve a correr. */
-    public Map<String, Object> metricas(boolean recalcular) throws SQLException {
+    /** Validación cruzada de 5 partes. Se calcula una vez y se guarda; "recalcular" la vuelve a correr.
+     *  Si dos personas la piden a la vez, la segunda espera y recibe el mismo resultado. */
+    public synchronized Map<String, Object> metricas(boolean recalcular) throws SQLException {
         if (metricasGuardadas != null && !recalcular) return metricasGuardadas;
+        // Con los mismos datos el resultado es idéntico (semillas fijas): se reutiliza el guardado
+        // en la base y no se gasta un minuto de procesador cada vez que el servidor despierta.
+        String firma = metricasDAO.firmaActual();
+        if (metricasGuardadas != null && firma.equals(firmaGuardada)) return metricasGuardadas;
+        String guardado = metricasDAO.leer(firma);
+        if (guardado != null) {
+            metricasGuardadas = Json.leerObjeto(guardado);
+            firmaGuardada = firma;
+            return metricasGuardadas;
+        }
         Map<Integer, Pelicula> peliculas = CacheDatos.peliculas();
         List<Calificacion> calificaciones = calificacionDAO.todas();
         long inicio = System.nanoTime();
@@ -170,6 +183,8 @@ public class RecomendacionServicio {
                 "perfiles", new HashSet<>(calificaciones.stream().map(Calificacion::perfilId).toList()).size(),
                 "peliculas", peliculas.size(), "top", ValidacionCruzada.TOP,
                 "segundos", Math.round(segundos * 100) / 100.0);
+        firmaGuardada = firma;
+        metricasDAO.guardar(firma, Json.escribir(metricasGuardadas));
         return metricasGuardadas;
     }
 

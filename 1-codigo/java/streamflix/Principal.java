@@ -91,21 +91,6 @@ public class Principal {
         }
         System.out.println("StreamFlix listo en " + direccion);
 
-        if (nube) {
-            // En el plan gratis el procesador es lento: las métricas de la IA se calculan apenas
-            // arranca, para que quien abra «Cómo funciona la IA» no espere más de un minuto.
-            Thread previo = new Thread(() -> {
-                try {
-                    new streamflix.servicio.RecomendacionServicio().metricas(false);
-                    System.out.println("Métricas de la IA listas.");
-                } catch (Exception e) {
-                    System.out.println("No se pudieron calcular las métricas al arrancar: " + e.getMessage());
-                }
-            });
-            previo.setDaemon(true);
-            previo.start();
-        }
-
         if (app) {
             abrirNavegador(direccion);
             var reloj = Executors.newSingleThreadScheduledExecutor();
