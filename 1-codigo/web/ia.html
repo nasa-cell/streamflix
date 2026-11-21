@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo funciona la IA · StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header id="menu"></header>
+  <main class="contenedor">
+    <h1 class="titulo-seccion" style="--c:var(--c4)">Cómo funciona la IA<small>y cuánto mejora al sistema actual</small></h1>
+    <div class="rejilla-3 aparece">
+      <div class="panel" style="border-top:5px solid var(--c1)"><h3>👥 Filtrado colaborativo</h3><p class="sub">Busca perfiles que califican parecido a ti (correlación de Pearson) y te recomienda lo que a ellos les encantó.</p></div>
+      <div class="panel" style="border-top:5px solid var(--c3)"><h3>🎭 Análisis de contenido</h3><p class="sub">Arma tu vector de gustos con los géneros de lo que viste, calificaste y comentaste, y lo compara con cada película (coseno).</p></div>
+      <div class="panel" style="border-top:5px solid var(--c4)"><h3>🌳 Árbol de decisión</h3><p class="sub">Aprende qué características (género, duración, tipo, año…) deciden si algo te gusta. Se construye con recursividad.</p></div>
+      <div class="panel" style="border-top:5px solid var(--c5)"><h3>🎞 Colaborativo por películas <span class="chip-nuevo">NUEVO</span></h3><p class="sub">Si te gustó una película, busca otras que la misma gente calificó parecido (coseno ajustado) y estima tu nota con ellas.</p></div>
+      <div class="panel" style="border-top:5px solid var(--c2)"><h3>🧮 Factorización de matrices <span class="chip-nuevo">NUEVO</span></h3><p class="sub">Descubre «rasgos ocultos» de cada persona y cada título. Se entrena vuelta por vuelta (épocas) y para sola cuando deja de mejorar.</p></div>
+      <div class="panel" style="border-top:5px solid var(--c1)"><h3>⚖️ Pesos aprendidos <span class="chip-nuevo">NUEVO</span></h3><p class="sub">El híbrido ya no usa pesos fijos: aprende cuánto confiar en cada técnica con una regresión, y se ajusta solo con más datos.</p></div>
+    </div>
+    <div id="metricas"><p class="vacio"><b>🧪</b>Ejecutando la validación cruzada…</p></div>
+  </main>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/ia.js"></script>
+</body>
+</html>

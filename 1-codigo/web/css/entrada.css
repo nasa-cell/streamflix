@@ -1,0 +1,53 @@
+/* Entrada animada E3 · Play */
+body.entrada { display: grid; place-items: center; height: 100vh; overflow: hidden; background: #05051a; cursor: pointer; }
+.escena { position: relative; width: 100%; height: 100%; display: grid; place-items: center; overflow: hidden; }
+.estrellas-fondo i { position: absolute; width: 2px; height: 2px; background: #fff; border-radius: 50%; opacity: .5; animation: titila 2.4s infinite alternate; }
+@keyframes titila { to { opacity: .08; } }
+
+.inicio-toque { position: absolute; display: flex; flex-direction: column; align-items: center; gap: 22px; transition: opacity .4s, transform .4s; }
+.inicio-toque .play-chico {
+  width: 120px; height: 120px; border-radius: 50%; border: 0; cursor: pointer; display: grid; place-items: center;
+  background: conic-gradient(var(--c1), var(--c2), var(--c3), var(--c4), var(--c5), var(--c1));
+  animation: latido 1.6s ease-in-out infinite; box-shadow: 0 0 40px #ff6fae66;
+}
+.inicio-toque .play-chico::after { content: ""; border-left: 38px solid #fff; border-top: 24px solid transparent; border-bottom: 24px solid transparent; margin-left: 10px; }
+@keyframes latido { 50% { transform: scale(1.08); box-shadow: 0 0 70px #ffe06688; } }
+.inicio-toque p { color: var(--suave); letter-spacing: 3px; font-size: 13px; }
+.escena.va .inicio-toque { opacity: 0; transform: scale(.6); pointer-events: none; }
+
+.play {
+  position: absolute; width: 0; height: 0; border-left: 110px solid var(--c1); border-top: 66px solid transparent;
+  border-bottom: 66px solid transparent; filter: drop-shadow(0 0 30px var(--c1)); transform: scale(0) rotate(-180deg); margin-left: 30px;
+}
+.escena.va .play { animation: play 1.2s cubic-bezier(.3, 1.6, .5, 1) forwards, colorPlay 1.1s 1s steps(1) forwards, salePlay .5s 2s forwards; }
+@keyframes play { to { transform: scale(1) rotate(0); } }
+@keyframes colorPlay { 0% { border-left-color: var(--c2); } 33% { border-left-color: var(--c3); } 66% { border-left-color: var(--c4); } }
+@keyframes salePlay { to { transform: scale(14); opacity: 0; } }
+.onda { position: absolute; width: 140px; height: 140px; border-radius: 50%; border: 5px solid var(--c); opacity: 0; }
+.escena.va .onda { animation: onda 1.7s var(--d) ease-out forwards; }
+@keyframes onda { 0% { opacity: 1; transform: scale(.3); } 100% { opacity: 0; transform: scale(6); } }
+.destello { position: absolute; inset: 0; background: radial-gradient(circle, #fff 0, var(--c3) 20%, transparent 60%); opacity: 0; }
+.escena.va .destello { animation: destello .7s 1.95s ease-out; }
+@keyframes destello { 0% { opacity: 0; } 30% { opacity: .85; } 100% { opacity: 0; } }
+.letrero { position: absolute; display: flex; font: 800 clamp(44px, 10vw, 104px) Poppins, sans-serif; letter-spacing: 1px; }
+.letrero b { display: inline-block; color: var(--c); opacity: 0; transform: translateY(-140px) rotate(-10deg); text-shadow: 0 0 26px var(--c); }
+.escena.va .letrero b { animation: cae .75s calc(2.1s + var(--d)) cubic-bezier(.3, 1.7, .5, 1) forwards; }
+@keyframes cae { to { opacity: 1; transform: none; } }
+.lema { position: absolute; bottom: 18%; letter-spacing: 6px; font-size: 13px; color: #ffe8cc; opacity: 0; }
+.escena.va .lema { animation: apareceLema .9s 3s forwards; }
+@keyframes apareceLema { to { opacity: 1; } }
+.saltar { position: absolute; right: 20px; bottom: 18px; color: #fff9; font-size: 13px; background: none; border: 1px solid #fff4; border-radius: 20px; padding: 6px 14px; cursor: pointer; font-family: inherit; }
+.boton-sonido-entrada { position: absolute; left: 20px; bottom: 18px; }
+
+/* El body comparte el nombre «entrada» con los campos de texto: se quitan su borde y relleno */
+body.entrada { border: 0; border-radius: 0; padding: 0; width: 100%; }
+
+/* Video de la entrada con los personajes */
+.video-entrada { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; pointer-events: none; transition: opacity .3s; z-index: 5; background: transparent; }
+.escena.con-video .video-entrada { opacity: 1; }
+.escena.con-video .inicio-toque { opacity: 0; transform: scale(.6); pointer-events: none; }
+.creditos-entrada { position: absolute; bottom: 4px; left: 0; right: 0; text-align: center; font-size: 10px; color: #fff6; z-index: 6; opacity: 0; transition: opacity .4s 1s; pointer-events: none; }
+.escena.con-video .creditos-entrada { opacity: 1; }
+.saltar, .boton-sonido-entrada { z-index: 7; }
+.video-fondo { object-fit: cover !important; filter: blur(28px) brightness(.7); transform: scale(1.15); z-index: 4; }
+.video-fondo { background: #05051a; }

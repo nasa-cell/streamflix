@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Recuperar contraseña · StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="menu"><div class="contenedor"><a class="logo-mini" href="entrada.html"><b>S</b><b>t</b><b>r</b><b>e</b><b>a</b><b>m</b><b>F</b><b>l</b><b>i</b><b>x</b></a></div></header>
+  <main class="contenedor">
+    <section class="formulario panel acento aparece" style="max-width:720px">
+      <h1>Recupera tu contraseña</h1>
+      <p class="sub">Tres pasos. Te enviamos un código temporal a tu Gmail para confirmar que la cuenta es tuya.</p>
+      <div class="pasos-recuperar">
+        <div class="paso-ficha" style="--c:var(--c1)" data-p="1"><span class="n">1</span><b>Tu Gmail</b>Buscamos tu cuenta.</div>
+        <div class="paso-ficha" style="--c:var(--c3)" data-p="2"><span class="n">2</span><b>Código</b>6 números, vale 10 minutos.</div>
+        <div class="paso-ficha" style="--c:var(--c4)" data-p="3"><span class="n">3</span><b>Nueva contraseña</b>Y entras de nuevo.</div>
+      </div>
+
+      <form id="paso1" class="paso-form" novalidate>
+        <div class="campos">
+          <div class="campo ancho">
+            <label for="login">Gmail o usuario <span class="marca obligatorio">OBLIGATORIO</span></label>
+            <input class="entrada" id="login" name="login" required maxlength="40" data-solo="correo" placeholder="Ejemplo: fabian23@gmail.com" autocomplete="username">
+            <div class="ayuda"><span>Te diremos si existe una cuenta con ese dato.</span><span class="contador"></span></div>
+          </div>
+        </div>
+        <div class="fila-botones">
+          <a class="btn btn-2" href="ingresar.html">Volver a ingresar</a>
+          <button class="btn btn-1" type="submit">Enviar código</button>
+        </div>
+      </form>
+
+      <form id="paso2" class="paso-form" novalidate hidden>
+        <div class="aviso-envio" id="aviso-envio"></div>
+        <div class="campos">
+          <div class="campo ancho">
+            <label for="codigo">Código de 6 números <span class="marca obligatorio">OBLIGATORIO</span></label>
+            <input class="entrada codigo" id="codigo" name="codigo" required maxlength="6" data-min="6" data-solo="numeros" inputmode="numeric" autocomplete="one-time-code" placeholder="······">
+            <div class="ayuda"><span id="vence">Vale 10 minutos. Tienes 3 intentos.</span><span class="contador"></span></div>
+          </div>
+        </div>
+        <div class="fila-botones">
+          <button type="button" class="boton-texto" id="otro" disabled>Pedir otro código en 60 s</button>
+          <button class="btn btn-1" type="submit">Comprobar</button>
+        </div>
+      </form>
+
+      <form id="paso3" class="paso-form" novalidate hidden>
+        <div class="campos">
+          <div class="campo ancho">
+            <label for="clave">Nueva contraseña <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS Y NÚMEROS</span></label>
+            <div class="clave-caja">
+              <input class="entrada" id="clave" name="clave" type="password" required maxlength="20" data-min="8" data-solo="alfanum"
+                     data-regla="^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$" data-mensaje="8 a 20, con letras y números juntos." placeholder="Ejemplo: Peli2026x" autocomplete="new-password">
+              <button type="button" class="ver-clave" aria-label="Ver contraseña">👁</button>
+            </div>
+            <div class="ayuda"><span>8 a 20, letras y números.</span><span class="contador"></span></div>
+          </div>
+          <div class="campo ancho">
+            <label for="clave2">Repite la contraseña <span class="marca obligatorio">OBLIGATORIO</span></label>
+            <div class="clave-caja">
+              <input class="entrada" id="clave2" name="clave2" type="password" required maxlength="20" data-solo="alfanum" autocomplete="new-password">
+              <button type="button" class="ver-clave" aria-label="Ver contraseña">👁</button>
+            </div>
+            <div class="ayuda"><span>Escríbela igual que arriba.</span><span class="contador"></span></div>
+          </div>
+        </div>
+        <div class="fila-botones">
+          <button class="btn btn-1" type="submit">Guardar y entrar</button>
+        </div>
+      </form>
+
+      <div class="por-que"><b>¿Por qué un código?</b> Solo quien abre tu Gmail lo recibe. El código se guarda cifrado, vence en 10 minutos, se anula tras 3 errores y se borra al usarlo.</div>
+    </section>
+  </main>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/campos.js"></script>
+  <script src="js/fondo-portadas.js"></script>
+  <script src="js/recuperar.js"></script>
+</body>
+</html>

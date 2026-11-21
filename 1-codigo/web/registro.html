@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Crear cuenta · StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="menu"><div class="contenedor"><a class="logo-mini" href="entrada.html"><b>S</b><b>t</b><b>r</b><b>e</b><b>a</b><b>m</b><b>F</b><b>l</b><b>i</b><b>x</b></a></div></header>
+  <main class="contenedor">
+    <form class="formulario panel acento aparece" id="formulario" novalidate>
+      <h1>Crea tu cuenta</h1>
+      <p class="sub">Cada dato tiene un ejemplo. Donde van letras solo se pueden escribir letras y donde van números solo números. El usuario, el Gmail, el DNI y el celular no se pueden repetir.</p>
+      <div class="campos">
+        <div class="campo ancho">
+          <label for="nombreCompleto">Nombre completo <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">SOLO LETRAS</span></label>
+          <input class="entrada" id="nombreCompleto" name="nombreCompleto" required maxlength="40" data-min="2" data-solo="letras"
+                 data-regla="^[A-Za-zÁÉÍÓÚáéíóúÑñÜü ]{2,40}$" data-mensaje="Solo letras y espacios, de 2 a 40." placeholder="Ejemplo: Fabián Torres" autocomplete="name">
+          <div class="ayuda"><span>2 a 40 letras.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="usuario">Usuario <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS Y NÚMEROS</span></label>
+          <input class="entrada" id="usuario" name="usuario" required maxlength="20" data-min="4" data-solo="alfanum" data-unico="usuario"
+                 data-regla="^[A-Za-z0-9]{4,20}$" data-mensaje="De 4 a 20 letras o números." data-texto-repetido="Ese usuario ya existe. Prueba agregando números." placeholder="Ejemplo: fabian23" autocomplete="username">
+          <div class="ayuda"><span>4 a 20, sin espacios. Único.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="correo">Gmail <span class="marca obligatorio">OBLIGATORIO</span></label>
+          <input class="entrada" id="correo" name="correo" required maxlength="40" data-solo="correo" data-unico="correo"
+                 data-regla="^[A-Za-z0-9.]{6,30}@gmail\.com$" data-mensaje="Debe terminar en @gmail.com (6 a 30 letras o números antes)." data-texto-repetido="Ese Gmail ya tiene cuenta. Si es tuyo, ingresa con él." placeholder="Ejemplo: fabian23@gmail.com" autocomplete="email">
+          <div class="ayuda"><span>Solo @gmail.com. Único.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="dni">DNI <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">SOLO NÚMEROS</span></label>
+          <input class="entrada" id="dni" name="dni" required maxlength="8" inputmode="numeric" data-solo="numeros" data-unico="dni"
+                 data-regla="^[0-9]{8}$" data-mensaje="Exactamente 8 números." data-texto-repetido="Ese DNI ya está registrado." placeholder="Ejemplo: 71234567">
+          <div class="ayuda"><span>8 números. Único.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="celular">Celular <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">SOLO NÚMEROS</span></label>
+          <input class="entrada" id="celular" name="celular" required maxlength="9" inputmode="numeric" data-solo="numeros" data-unico="celular"
+                 data-regla="^9[0-9]{8}$" data-mensaje="9 números y empieza con 9." data-texto-repetido="Ese celular ya está registrado." placeholder="Ejemplo: 987654321" autocomplete="tel">
+          <div class="ayuda"><span>9 números, empieza en 9. Único.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="edad">Edad <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">SOLO NÚMEROS</span></label>
+          <input class="entrada" id="edad" name="edad" required maxlength="2" inputmode="numeric" data-solo="numeros"
+                 data-regla="^[0-9]{2}$" data-rango="13-99" data-mensaje="De 13 a 99 años." placeholder="Ejemplo: 19">
+          <div class="ayuda"><span>De 13 a 99 años.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="clave">Contraseña <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS Y NÚMEROS</span></label>
+          <div class="clave-caja">
+            <input class="entrada" id="clave" name="clave" type="password" required maxlength="20" data-min="8" data-solo="alfanum"
+                   data-regla="^(?=.*[A-Za-z])(?=.*[0-9])[A-Za-z0-9]{8,20}$" data-mensaje="8 a 20, con letras y números juntos." placeholder="Ejemplo: Peli2025x" autocomplete="new-password">
+            <button type="button" class="ver-clave" aria-label="Ver contraseña">👁</button>
+          </div>
+          <div class="ayuda"><span>8 a 20, letras y números.</span><span class="contador"></span></div>
+        </div>
+      </div>
+      <div class="fila-botones">
+        <a class="btn btn-2" href="ingresar.html">Ya tengo cuenta</a>
+        <button class="btn btn-1" type="submit" id="enviar">Crear cuenta</button>
+      </div>
+    </form>
+  </main>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/campos.js"></script>
+  <script src="js/fondo-portadas.js"></script>
+  <script src="js/registro.js"></script>
+</body>
+</html>

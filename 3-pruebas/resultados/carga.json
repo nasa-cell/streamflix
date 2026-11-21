@@ -1,0 +1,11 @@
+[
+{"usuarios":10,"pedidos":120,"errores":0,"segundos":0.82,"pedidosPorSegundo":146.9,"promedioMs":65,"p50":11,"p95":514,"maxMs":545}
+,
+{"usuarios":50,"pedidos":600,"errores":0,"segundos":0.73,"pedidosPorSegundo":824,"promedioMs":57,"p50":38,"p95":198,"maxMs":282}
+,
+{"usuarios":100,"pedidos":1200,"errores":0,"segundos":0.95,"pedidosPorSegundo":1260,"promedioMs":74,"p50":44,"p95":328,"maxMs":372}
+,
+{"usuarios":200,"pedidos":2400,"errores":0,"segundos":1.58,"pedidosPorSegundo":1515.8,"promedioMs":123,"p50":77,"p95":538,"maxMs":573}
+,
+{"usuarios":300,"pedidos":3600,"errores":0,"segundos":2.22,"pedidosPorSegundo":1621.3,"promedioMs":172,"p50":93,"p95":764,"maxMs":814}
+]

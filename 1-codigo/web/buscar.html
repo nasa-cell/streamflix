@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Buscar · StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header id="menu"></header>
+  <main class="contenedor">
+    <h1 class="titulo-seccion" style="--c:var(--c5)">Buscar películas y series<small>2025 y 2026</small></h1>
+    <form class="buscador" id="buscador" role="search">
+      <input class="entrada" id="q" maxlength="60" placeholder="🔍 Título, género o tema… Ejemplo: superhéroes" data-corto="🔍 Título, género o tema" aria-label="Buscar" autocomplete="off">
+      <select class="entrada" id="anio" aria-label="Año"><option value="">Todos los años</option><option>2025</option><option>2026</option></select>
+      <select class="entrada" id="tipo" aria-label="Tipo"><option value="">Películas y series</option><option>Película</option><option>Serie</option></select>
+      <select class="entrada" id="genero" aria-label="Género"><option value="">Todos los géneros</option></select>
+    </form>
+    <p class="sub" id="cuantos"></p>
+    <div class="rejilla" id="resultados"></div>
+  </main>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/menu.js"></script>
+  <script src="js/buscar.js"></script>
+</body>
+</html>

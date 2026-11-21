@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+  <link rel="stylesheet" href="css/entrada.css">
+</head>
+<body class="entrada">
+  <div class="escena" id="escena">
+    <div class="estrellas-fondo" id="estrellas"></div>
+    <div class="inicio-toque">
+      <button class="play-chico" id="empezar" aria-label="Tocar para empezar" data-sin-sonido></button>
+      <p>TOCA PARA EMPEZAR</p>
+    </div>
+    <div id="ondas"></div>
+    <div class="play"></div>
+    <div class="destello"></div>
+    <div class="letrero" id="letrero" aria-label="StreamFlix"></div>
+    <div class="lema">PELÍCULAS Y SERIES A TU GUSTO</div>
+    <video class="video-entrada video-fondo" id="video-fondo" playsinline muted preload="auto" aria-hidden="true"></video>
+    <video class="video-entrada" id="video" playsinline preload="auto" aria-hidden="true"></video>
+    <p class="creditos-entrada" id="creditos">Animación: pixiv VRoid Project · Música: CHILL FRAME TOKYO</p>
+    <button class="boton-icono boton-sonido-entrada" id="sonido" data-sin-sonido></button>
+    <button class="saltar" id="saltar">Saltar ⏭</button>
+  </div>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/entrada.js"></script>
+</body>
+</html>

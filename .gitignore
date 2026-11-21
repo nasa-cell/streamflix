@@ -1,0 +1,5 @@
+# Contraseñas: nunca se suben
+1-codigo/configuracion/conexion.properties
+1-codigo/configuracion/correo.properties
+3-pruebas/datos-reales/*.csv
+3-pruebas/datos-reales/*.zip

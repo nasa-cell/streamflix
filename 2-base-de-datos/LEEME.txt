@@ -1,0 +1,9 @@
+BASE DE DATOS (MySQL 8.4)
+
+1-crear-tablas.sql    Crea la base streamflix y sus 14 tablas (borra la anterior).
+2-datos-ejemplo.sql   146 títulos, 40 cuentas, 55 perfiles y 1 217 calificaciones de ejemplo.
+
+Ejecutar en MySQL Workbench en ese orden. Cuenta de ejemplo: demo2025 / Demo2025x.
+
+nube-postgres/       Las mismas tablas y datos para PostgreSQL (Neon). Los usa la versión en internet;
+                     el servidor los carga solo la primera vez. No hace falta ejecutarlos a mano.

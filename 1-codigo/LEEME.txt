@@ -1,0 +1,16 @@
+CÓDIGO DE STREAMFLIX
+
+java/            Servidor en Java 17 (sin frameworks) y toda la inteligencia artificial.
+  streamflix/modelo        Datos: Usuario, Perfil, Pelicula, Calificacion...
+  streamflix/dao           Lectura y escritura en MySQL (JDBC con pool de conexiones).
+  streamflix/servicio      Reglas, validaciones, sesiones y aprendizaje continuo.
+  streamflix/controlador   Rutas de la API (/api/...) y archivos de la página.
+  streamflix/ia            Recomendador híbrido: colaborativo, contenido, árbol, factorización...
+  streamflix/util          JSON recursivo.
+web/             La página: HTML, css/, js/, portadas/ (portadas/chicas son las livianas) y video/
+                 (video de la portada: -h horizontal para PC y tablet, -v vertical para celular).
+configuracion/   conexion.properties: usuario y clave de MySQL; correo.properties: servicio que envía
+                 el código para recuperar la contraseña. Ninguno de los dos se comparte.
+lib/             Conectores de MySQL (en la PC) y de PostgreSQL (versión en internet) para Java.
+
+Para abrir la app: doble clic en iniciar.bat (en la carpeta principal).

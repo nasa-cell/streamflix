@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Perfil · StreamFlix</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>▶️</text></svg>">
+  <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+  <header class="menu"><div class="contenedor"><a class="logo-mini" href="perfiles.html"><b>S</b><b>t</b><b>r</b><b>e</b><b>a</b><b>m</b><b>F</b><b>l</b><b>i</b><b>x</b></a></div></header>
+  <main class="contenedor">
+    <form class="formulario panel acento aparece" id="formulario" novalidate>
+      <h1 id="titulo">Crear perfil</h1>
+      <p class="sub">Elige un dibujo, un color, un nombre y lo que te gusta. Con tus gustos la IA te recomienda bien desde el primer día.</p>
+      <div class="campos">
+        <div class="campo ancho">
+          <label>Dibujo del perfil <span class="marca obligatorio">ELIGE 1</span></label>
+          <div class="avatares" id="avatares"></div>
+        </div>
+        <div class="campo ancho">
+          <label>Color de fondo <span class="marca obligatorio">ELIGE 1</span></label>
+          <div class="colores" id="colores"></div>
+        </div>
+        <div class="campo ancho">
+          <label for="nombre">Nombre del perfil <span class="marca obligatorio">OBLIGATORIO</span><span class="marca tipo">LETRAS Y NÚMEROS</span></label>
+          <input class="entrada" id="nombre" name="nombre" required maxlength="15" data-min="2" data-solo="perfil"
+                 data-regla="^[A-Za-z0-9ÁÉÍÓÚáéíóúÑñ]{2,15}$" data-mensaje="De 2 a 15 letras o números, sin espacios." placeholder="Ejemplo: Fabian2">
+          <div class="ayuda"><span>2 a 15, no se repite en tu cuenta.</span><span class="contador"></span></div>
+        </div>
+        <div class="campo">
+          <label for="infantil">¿Perfil infantil? <span class="marca opcional">OPCIONAL</span></label>
+          <select class="entrada" id="infantil"><option value="no">No</option><option value="si">Sí, solo apto para todos</option></select>
+          <div class="ayuda"><span>Oculta películas +13, +14, +16 y +18.</span></div>
+        </div>
+        <div class="campo">
+          <label for="idioma">Idioma del audio <span class="marca opcional">OPCIONAL</span></label>
+          <select class="entrada" id="idioma"><option>Español</option><option>Inglés</option><option>Japonés</option></select>
+          <div class="ayuda"><span>Idioma que prefieres.</span></div>
+        </div>
+        <div class="campo ancho">
+          <label>¿Qué te gusta? <span class="marca obligatorio">ELIGE 3 A 6</span></label>
+          <div class="chips" id="gustos"></div>
+          <div class="ayuda"><span id="cuenta-gustos">Elegiste 0. Elige de 3 a 6.</span></div>
+        </div>
+      </div>
+      <div class="fila-botones">
+        <a class="btn btn-2" href="perfiles.html" id="cancelar">Cancelar</a>
+        <button class="btn btn-1" type="submit" id="guardar">Guardar perfil</button>
+      </div>
+    </form>
+  </main>
+  <script src="js/sonido.js"></script>
+  <script src="js/avisos.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/comun.js"></script>
+  <script src="js/campos.js"></script>
+  <script src="js/fondo-portadas.js"></script>
+  <script src="js/perfil.js"></script>
+</body>
+</html>
